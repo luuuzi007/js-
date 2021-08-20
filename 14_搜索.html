@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .search {
+            width: 258px;
+            height: 40px;
+            margin: 100px auto;
+            background-color: pink;
+        }
+
+        .search input {
+            width: 208px;
+            height: 40px;
+            background: url("images/left.jpg") no-repeat;
+            border:0 none;
+            outline-style: none;
+            padding-left: 8px;
+            float: left;
+            color: #cccccc;
+        }
+
+        .search button {
+            width: 42px;
+            height: 40px;
+            background: url("images/right.jpg") no-repeat;
+            border:0 none;
+            float: left;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function () {
+            var txt=document.getElementById("txt");
+            txt.onfocus=function () {
+                if(txt.value=="请输入..."){
+                    txt.value="";
+                    txt.style.color="black";
+                }
+            }
+            txt.onblur=function () {
+                if (txt.value==""){
+                    txt.value="请输入...";
+                    txt.style.color="#ccc";
+                }
+            }
+            document.getElementsByClassName()
+            document.getElementsByTagName();//很多个所以是复数,很多个得到的是一个伪数组。
+            document.getElementsByTagNameNS()//
+        }
+    </script>
+</head>
+<body>
+<div class="search">
+    <input type="text" value="请输入..." id="txt"/>
+    <button></button>
+</div>
+</body>
+</html>

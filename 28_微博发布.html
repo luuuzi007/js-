@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 400px;
+            height: auto;
+            margin: 100px auto;
+            border: 1px solid black;
+            padding-bottom: 30px;
+        }
+
+        .box2 h {
+            /*float: left;*/
+            /*width: 80px;*/
+            /*height: 60px;*/
+            margin-top: 230px;
+            /*border: 1px solid black;*/
+            font: 18px/18px "Arial Black";
+            margin-right: 10px;
+        }
+
+        textarea {
+            /*float: left;*/
+            width: 250px;
+            height: 250px;
+            border: 1px solid black;
+            margin-right: 10px;
+
+            height: 250px;
+            width: 250px;
+            resize: none;
+        }
+
+        .box2 .btn_release {
+            /*float: left;*/
+            margin-top: 230px;
+            font: 18px/18px "Arial Black";
+        }
+
+        .box ul {
+            list-style: none;
+            width: 200px;
+            /*height: 50px;*/
+            margin: 0 auto;
+        }
+
+        .box ul input {
+            float: right;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box = document.getElementById("box");
+            var btn_release = document.getElementById("btn_release");
+            var input_content = document.getElementById("input_content");
+            var div_list = document.createElement("div");
+            box.appendChild(div_list);
+            var ul_list = document.createElement("ul");
+            div_list.appendChild(ul_list);
+            btn_release.onclick = function () {
+                var str = input_content.value;
+                var li_list = document.createElement("li");
+
+                var span_tst = document.createElement("span")
+                span_tst.innerHTML = str;
+                li_list.appendChild(span_tst)
+                var input_button = document.createElement("input");
+                input_button.type = "button";
+                input_button.value = "删除";
+                input_button.style.marginLeft = "30px";
+                li_list.appendChild(input_button);
+                input_content.value = ""
+
+                input_button.onclick = function () {//删除
+                    ul_list.removeChild(this.parentNode);
+                }
+
+                var childs = ul_list.children
+                if (childs.length > 0) {
+                    ul_list.insertBefore(li_list, childs[0])
+                } else {
+                    ul_list.appendChild(li_list);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <h>微博发布</h>
+    <textarea type="text" class="input_content" id="input_content"></textarea>
+    <input type="button" value="发布" class="btn_release" id="btn_release">
+    <!--            <div>-->
+    <!--                <ul>-->
+    <!--                    <li><span >发不能没人1</span> <input type="button" value="删除"></li>-->
+    <!--                </ul>-->
+    <!--            </div>-->
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #demo {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+
+        }
+    </style>
+</head>
+<body>
+<div id="demo">我是盒子</div>
+<button id="btn">盒子变宽</button>
+<button id="btn_height">盒子变高</button>
+<button id="btn_close">关闭盒子</button>
+<script type="text/javascript">
+    //1、先获取到事件源
+    var demo = document.getElementById("demo");
+    var btn = document.getElementById("btn");
+    var btn_height = document.getElementById("btn_height");
+    var btn_close = document.getElementById("btn_close");
+    var a = 200;
+    console.log("a:"+a)
+    //2、事件源.事件=function(){事件处理程序}
+    btn.onclick = function () {
+        a = a+ 40;
+        console.log("点击后a:"+a)
+        demo.style.width = a + "px";
+    }
+    btn_height.onclick=function (){
+        demo.style.height="400px";
+    }
+    btn_close.onclick=function (){
+        demo.style.visibility="hidden";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            background: url(images/1.jpg) no-repeat;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            document.getElementById("switchbg").onchange = function () {
+                console.log("value:" + this.value);
+                switch (this.value) {
+                    case "0":
+                        document.body.style.backgroundImage = "url(images/1.jpg)"
+                        break;
+                    case "1":
+                        document.body.style.backgroundImage = "url(images/2.jpg)"
+                        break;
+                    case "2":
+                        document.body.style.backgroundImage = "url(images/3.jpg)"
+                        break;
+                    case "3":
+                        document.body.style.backgroundImage = "url(images/4.jpg)"
+                        break;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <select name="更换背景图" id="switchbg">
+        <option value="0">春意绵绵</option>
+        <option value="1">夏日炎炎</option>
+        <option value="2">秋声瑟瑟</option>
+        <option value="3">冬雪皑皑</option>
+</div>
+</select>
+</body>
+</html>

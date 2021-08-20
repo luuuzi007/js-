@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 730px;
+            height: 454px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            /*width: 190px;*/
+            height: 20px;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -50px;
+            text-align: center;
+        }
+
+        .box span {
+            float: left;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: #ccc;
+            text-align: center;
+            line-height: 18px;
+            color: black;
+            margin-right: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var scroll_div = document.getElementById("scroll");
+            var slider_div = document.createElement("div");
+            // slider_div.className = "slider";
+            slider_div.setAttribute("class","slider");
+            var lis = scroll_div.getElementsByTagName("li");
+            for (var i = 0; i < lis.length; i++) {
+                var span_item = document.createElement("span");
+                span_item.innerHTML=i + 1;
+                slider_div.appendChild(span_item);
+                // span_item.removeAttribute()
+            }
+            scroll_div.appendChild(slider_div);
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="scroll">
+    <ul>
+        <li><img src="images27/11.jpg" alt=""></li>
+        <li><img src="images27/22.jpg" alt=""></li>
+        <li><img src="images27/33.jpg" alt=""></li>
+        <li><img src="images27/44.jpg" alt=""></li>
+        <li><img src="images27/55.jpg" alt=""></li>
+        <li><img src="images27/66.jpg" alt=""></li>
+    </ul>
+<!--    <div class="slider">-->
+<!--        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>-->
+<!--    </div>-->
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<div class="demo"></div>
+<div></div>
+<div class="demo"></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script type="text/javascript">
+    function getClassName(str) {
+        if (document.getElementsByClassName) {
+            console.log("新浏览器");
+            return document.getElementsByClassName(str);
+        }
+        //适配ie6，7,8浏览器
+        var cls = document.getElementsByTagName("*");
+        console.log("标签总数：" + cls.length);
+        var arr = [];
+        for (var i = 0; i < cls.length; i++) {
+            var a = cls[i];
+            if (a.className == str) {
+                console.log("旧浏览器");
+                arr.push(a)
+            }
+        }
+        return arr;
+    }
+    alert("类名为demo的元素数量：" + getClassName("demo").length);
+</script>
+</body>
+</html>

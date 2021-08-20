@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .judge{
+            margin: 100px auto;
+          text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function () {
+            var txt=document.getElementById("txt");
+            var result=document.getElementById("result");
+            txt.oninput=function () {
+                var s=this.value
+                if (s==""){
+                    result.innerHTML="请输入分数..."
+                }else if (isNaN(s)){
+                    result.innerHTML="请输入数字"
+                }else if (s>150||s<0){
+                    result.innerHTML="分数不合法"
+                }else {
+                    result.innerHTML="分数合法"
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+      <div class="judge">
+        <span>成绩判断：</span>
+        <input type="text" id="txt"/>
+        <span id="result" >结果</span>
+      </div>
+</body>
+</html>

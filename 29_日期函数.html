@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: cornflowerblue;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        #todaty_date {
+            color: white;
+            font: 14px/20px "微软雅黑 Light";
+        }
+
+        #todaty_week {
+            color: white;
+            font: 16px/20px "微软雅黑 Light";
+        }
+
+        .tody {
+            width: 80px;
+            height: 80px;
+            background-color: peachpuff;
+            color: black;
+            text-align: center;
+            font: 42px/80px "微软雅黑 Light";
+            margin: 30px auto;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var date = new Date();
+            var todaty_date = document.getElementById("todaty_date");
+            var todaty_week = document.getElementById("todaty_week");
+            var tody = document.getElementById("tody");
+
+            todaty_date.innerHTML = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+            todaty_week.innerHTML = date.toLocaleDateString([], {weekday: 'long'})
+            tody.innerHTML = date.getDate()
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <a id="todaty_date">1970-01-01</a>
+    <a id="todaty_week"></a>
+    <div class="tody" id="tody">0</div>
+</div>
+</body>
+</html>

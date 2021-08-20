@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .search {
+            width: 300px;
+            height: 40px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .search label{
+            position: absolute;
+            font-size: 14px;
+            top: 1px;
+            left: 5px;
+            cursor: text;//修改鼠标样式
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var txt = document.getElementById("txt")
+            var hint = document.getElementById("hint")
+            txt.focus();
+            txt.oninput=function () {
+                if (this.value==""){
+                    hint.style.display="block"
+                }else {
+                    hint.style.display="none"
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="search">
+    <input type="text" id="txt"/><label for="txt" id="hint">好的哈哈</label>
+</div>
+</body>
+</html>
