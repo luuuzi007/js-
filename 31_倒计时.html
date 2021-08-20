@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #demo {
+
+            width: 600px;
+            height: 100px;
+            margin: 100px auto;
+            color: red;
+            font: 20px/100px 微软雅黑;
+            text-align: center;
+            border: 1px solid red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var demo=document.getElementById("demo");
+            var endDate = new Date("2021/8/29");
+            setInterval(fun, 1000);
+
+            function fun() {
+                let nowDate = new Date();
+                let number = endDate.getTime() - nowDate.getTime();
+                print(parseInt(number / 1000));
+            }
+
+            function print(second) {
+                let day = parseInt(second / (24 * 60 * 60));//天
+                let remain = second % (24 * 60 * 60);//剩下时间
+                let hour = parseInt(remain / (60 * 60));//时
+                let remain2 = remain % (60 * 60);//剩下时间
+                let minute = parseInt(remain2 / 60);//分
+                let remain3 = remain2 % 60;//剩下时间
+                demo.innerHTML=("距离抢购时间剩余：" + day + "天 " + hour + "时 " + minute + "分 " + remain3 + "秒");
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="demo"></div>
+</body>
+</html>
