@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .xiaomi {
+            width: 512px;
+            height: 400px;
+            overflow: hidden;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .xiaomi span {
+            width: 100%;
+            height: 200px;
+            position: absolute;
+            left: 0;
+        }
+
+        .xiaomi img {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .up {
+            top: 0;
+        }
+
+        .down {
+            bottom: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let up = document.getElementById("up");
+            let down = document.getElementById("down");
+            let img_bg = document.getElementById("img_bg");
+            var timeUp = null;
+            var timeDown = null;
+            up.onmouseover = function () {
+                // console.log("鼠标进入up");
+                timeUp = setTimeout(movetop, 10)
+            }
+            up.onmouseout = function () {
+                // console.log("鼠标离开up");
+                clearTimeout(timeUp);
+            }
+            down.onmouseover = function () {
+                // console.log("鼠标进入down");
+                timeDown = setTimeout(movebottom, 30)
+            }
+            down.onmouseout = function () {
+                // console.log("鼠标离开down");
+                clearTimeout(timeDown);
+            }
+            var top = 0;
+
+            function movetop() {
+                if (top > -1070) {
+                    top--;
+                    img_bg.style.top = top + "px";
+                    clearTimeout(timeUp);
+                    timeUp = setTimeout(arguments.callee, 10);
+                }
+            }
+
+            function movebottom() {
+                if (top < 0) {
+                    top++;
+                    img_bg.style.top = top + "px";
+                    clearTimeout(timeDown);
+                    timeDown = setTimeout(arguments.callee, 30);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="xiaomi">
+    <img src="images/mi.png" alt="" id="img_bg">
+    <span class="up" id="up"></span>
+    <span class="down" id="down"></span>
+</div>
+</body>
+</html>

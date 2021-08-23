@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let btn_send = document.getElementById("btn_send");
+            let tel = document.getElementById("telnumber");
+            var time = null;
+            btn_send.disabled = true;
+            tel.onkeyup = function () {
+                if (tel.value.length == 11) {
+                    btn_send.disabled = false;
+                } else {
+                    btn_send.disabled = true;
+                }
+                // console.log("aaa:" + tel.value);
+            }
+
+            btn_send.onclick = function () {
+                b = true;
+                time = setInterval(send, 1000);
+                setTimeout(send,5000)
+            }
+            var num = 6;
+
+
+            function send() {
+                num--;
+                if (num == 0) {
+                    btn_send.disabled = false;//按钮不可用
+                    btn_send.innerHTML = "重新发送";
+                    num = 6;
+                    clearInterval(time)//清除定时器
+                } else {
+                    btn_send.disabled = true;
+                    btn_send.innerHTML = num + "s后重新发送";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="tel" id="telnumber">
+<button class="btn_send" id="btn_send">发送验证码</button>
+</body>
+</html>
