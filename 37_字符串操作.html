@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">122</div>
+<script type="text/javascript">
+    var s = "dfae mbngvla";
+    var sss = "gfpu";
+    let s1 = s.concat(sss);
+    console.log("s1:" + s1);
+    console.log(s1.slice(3, 6));
+    console.log(s1.slice(-1));
+    console.log(s1.substr());
+
+    // let index = s.indexOf("a");
+    // let lastindex = s.lastIndexOf("a");
+    // console.log("index："+index);
+    // console.log("lastindex："+lastindex);
+    //    编码与解码
+    var str = "https://www.baidu.com/?name=andy"
+    console.log("str:" + str);
+    let encode = encodeURIComponent(str);//编码
+    console.log("encode:" + encode);
+    let decode = decodeURIComponent(encode);//解码
+    console.log("decode:" + decode);
+
+    //保留小数位数
+    var PI = 3.14159263
+    var pis = PI + "";
+    console.log("保留2位小数：" + pis.substr(0, pis.indexOf(".") + 3));
+    console.log("保留2位小数：" + parseInt(PI * 100) / 100);
+    console.log("保留2位小数：" + PI.toFixed(2));
+</script>
+</body>
+</html>
