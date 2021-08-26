@@ -14,9 +14,9 @@
             width: 490px;
             height: 170px;
             margin: 100px auto;
-            background-color: pink;
             position: relative;
             overflow: hidden;
+            border: 1px solid #cccccc;
         }
 
         ul {
@@ -25,6 +25,8 @@
 
         .ul_img {
             position: absolute;
+            top: 0;
+            left: 0px;
             width: 600%;
             list-style: none;
         }
@@ -47,31 +49,88 @@
             float: left;
             width: 20px;
             height: 20px;
-            background-color: saddlebrown;
+            /*background-color: saddlebrown;*/
             color: black;
             text-align: center;
             margin-left: 5px;
             font: 700 18px/20px "微软雅黑 Light";
         }
+
+        .rr {
+            background-color: red;
+        }
+
+        .sad {
+            background-color: saddlebrown;
+        }
     </style>
 </head>
 <body>
 <div class="box">
-    <ul class="ul_img">
+    <ul class="ul_img" id="ul_img">
         <li class="li_img"><img src="images41/01.jpg" alt=""></li>
         <li class="li_img"><img src="images41/02.jpg" alt=""></li>
         <li class="li_img"><img src="images41/03.jpg" alt=""></li>
         <li class="li_img"><img src="images41/04.jpg" alt=""></li>
         <li class="li_img"><img src="images41/05.jpg" alt=""></li>
     </ul>
-    <ul class="ul_num">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
+    <ul class="ul_num" id="ul_num">
+        <li class="rr">1</li>
+        <li class="sad">2</li>
+        <li class="sad">3</li>
+        <li class="sad">4</li>
+        <li class="sad">5</li>
     </ul>
 
+    <script type="text/javascript">
+        let ul_img = document.getElementById("ul_img");
+        let ul_num = document.getElementById("ul_num");
+        let children = ul_num.children;
+        var leader = 0;//当前位置
+        var target = 0;//目标位置
+        var offset = 0;
+        var timer = null;
+        ul_img.style.left = "0px";
+        for (var i = 0, length = children.length; i < length; i++) {
+            let child = children[i];
+            child.index = i;
+            child.onmouseover = function () {
+                for (var j = 0; j < length; j++) {
+                    children[j].className = "sad";
+                }
+                this.className = "rr";
+
+                target = 490 * this.index;
+                target = 0 - target;
+                console.log("target:" + target);
+
+                timer = setInterval(function () {
+                    // leader = parseInt(ul_img.style.left);
+                    // console.log("leader:" + leader);
+                    // var displacement = target - leader;//位移位置
+                    // if (displacement > 0) {//右移
+                    //     offset++;
+                    // } else if (displacement < 0) {//左移
+                    //     offset--;
+                    // } else {
+                    //     console.log("清除定时器");
+                    //     clearInterval(timer)
+                    // }
+                    // ul_img.style.left = offset + "px";
+
+                    // var leader=0;
+                    leader = leader + (target - leader) / 10;
+                    ul_img.style.left = leader + "px";
+                    console.log("leadeer:" + leader);
+                    if (leader == target) {
+                        console.log("清除定时器");
+                        clearInterval(timer);
+                    }
+                }, 30)
+            }
+        }
+
+    </script>
 </div>
 </body>
 </html>
