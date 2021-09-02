@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 500px;
+            height: 600px;
+            background-color: pink;
+            margin: 100px;
+            position: relative;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="box2"></div>
+</div>
+
+<script type="text/javascript">
+    let box = document.getElementById("box");
+    let box2 = document.getElementById("box2");
+    let width = box.style.width;
+    console.log("width:" + width);
+    //输出500
+    console.log("offsetWidth:" + box.offsetWidth);
+    //输出600
+    console.log("offsetHeight:" + box.offsetHeight);
+    //输出10
+    console.log("box2.offsetLeft:" + box2.offsetLeft);
+    //输出0
+    console.log("box2.offsetTop:" + box2.offsetTop);
+</script>
+</body>
+</html>
