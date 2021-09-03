@@ -69,9 +69,15 @@
             for (var i = 0; i < lis.length; i++) {
                 let tabElement = lis[i];
                 tabElement.index = i;
+                if (i == 0) {
+                    tabElement.style.color = "white";
+                }
                 tabElement.onmouseover = function () {
-                    console.log("距离：" + this.index * 90);
                     move.style.left = this.index * 90 + "px";
+                    for (var j = 0; j < lis.length; j++) {
+                        lis[j].style.color = "black";
+                    }
+                    this.style.color = "white";
                 }
             }
         }
