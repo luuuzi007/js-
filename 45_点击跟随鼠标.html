@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #image {
+            width: 88px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let image = document.getElementById("image");
+            var leaderX = 0;//起始位置
+            var leaderY = 0;
+            var targetX = 0;//目标位置
+            var targetY = 0;
+            document.onclick = function (event) {
+                var event = event || window.event;
+                targetX = event.pageX - image.offsetWidth / 2;
+                targetY = event.pageY - image.offsetHeight / 2;
+                setInterval(function () {
+                    leaderX = leaderX + (targetX - leaderX) / 10;
+                    leaderY = leaderY + (targetY - leaderY) / 10;
+                    image.style.left = leaderX + "px";
+                    image.style.top = leaderY + "px";
+                }, 50)
+
+                console.log("pageX:" + event.pageX);
+                console.log("pageY:" + event.pageY);
+            }
+        }
+    </script>
+</head>
+<body>
+<img src="image45/img.jpg" alt="" id="image">
+</body>
+</html>

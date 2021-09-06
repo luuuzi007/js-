@@ -18,11 +18,11 @@
 <div class="box" id="box"></div>
 <script type="text/javascript">
     let box = document.getElementById("box");
-    var leader = 0;
-    var target = 800;
+    var leader = 0;//当前位置
+    var target = 800;//目标位置
     document.getElementById("btn").onclick = function () {
         setInterval(function () {
-            leader = leader += (target - leader) / 100;
+            leader = leader + (target - leader) / 100;
             box.style.left = leader + "px";
         }, 20)
     }
