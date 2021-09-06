@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body{
+            height: 10000px;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        //网页点击事件
+        document.onclick=function (event) {
+            var event = event || window.event;
+            console.log("type:"+event.type);//输出click
+            console.log("type:"+event.type);//输出click
+            console.log("pageX:"+event.pageX);//输出212
+            console.log("pageY:"+event.pageY);//输出1771
+            console.log("clientX:"+event.clientX);//输出212
+            console.log("clientY:"+event.clientY);//输出71
+            console.log("screenX:"+event.screenX);//输出212
+            console.log("screenY:"+event.screenY);//输出174
+
+        }
+    </script>
+</body>
+</html>

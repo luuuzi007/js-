@@ -20,7 +20,7 @@
             margin: 100px auto;
             line-height: 50px;
             border-radius: 10px;
-            background-color: white;
+            background: url("image43/rss.png") no-repeat right center #fff;
         }
 
         .box_left {
@@ -68,16 +68,20 @@
             console.log("子节点数量：" + lis.length);
             for (var i = 0; i < lis.length; i++) {
                 let tabElement = lis[i];
-                tabElement.index = i;
+                // tabElement.index = i;
                 if (i == 0) {
                     tabElement.style.color = "white";
                 }
                 tabElement.onmouseover = function () {
-                    move.style.left = this.index * 90 + "px";
+                    // move.style.left = this.index * 90 + "px";
+                    move.style.left = this.offsetLeft + "px";
                     for (var j = 0; j < lis.length; j++) {
                         lis[j].style.color = "black";
                     }
                     this.style.color = "white";
+                }
+                tabElement.onmouseout = function () {
+                    move.style.left = "0px";
                 }
             }
         }
@@ -88,10 +92,10 @@
     <div class="box_left">
         <div id="move"></div>
         <ul id="tab">
-            <li>标签1</li>
-            <li>标签2</li>
-            <li>标签3</li>
-            <li>标签4</li>
+            <li>首页新闻</li>
+            <li>师资力量</li>
+            <li>活动策划</li>
+            <li>企业文化</li>
             <li>标签5</li>
             <li>标签6</li>
             <li>标签7</li>
@@ -99,7 +103,7 @@
         </ul>
     </div>
 
-    <img src="image43/rss.png" alt="" id="img_right">
+    <!--    <img src="image43/rss.png" alt="" id="img_right">-->
 
 </div>
 <div style="text-align: center; width: 500px;height:200px; line-height:200px; border: green solid 1px;">
