@@ -21,6 +21,7 @@
             left: 0;
             top: 0;
             border: 1px solid #ccc;
+            margin: 100px 0px 0px 100px;
             /*margin-top: 20px;*/
             /*margin-left: 20px;*/
         }
@@ -30,15 +31,17 @@
             /*width: 350px;*/
             /*height: 350px;*/
             background-color: pink;
+            cursor: move;
         }
 
         .mask {
-            width: 40px;
-            height: 40px;
+            width: 100px;
+            height: 100px;
             position: absolute;
             left: 0;
             top: 0;
             background-color: rgba(255, 255, 0, .4);
+            /*background-color: black;*/
         }
 
         .big {
@@ -63,25 +66,82 @@
             let big = fdg.children[1];
             let mask = small.children[1];
             let img = big.children[0];
+
             small.onmouseover = function () {
+                // console.log("显示");
                 big.style.display = "block";
                 mask.style.display = "block";
-                console.log("没离开small");
             }
-            small.onmouseout = function (event) {
-                console.log("离开small");
+            small.onmouseout = function () {
+                // console.log("隐藏");
                 big.style.display = "none";
                 mask.style.display = "none";
-                console.log("pageY:" + event.pageY);
-                console.log("height:" + small.offsetHeight);
             }
+
+            //计算图片宽高
+            var imgWidth = 0;
+            var imgHeight = 0;
+            // 图片地址
+            var img_url = "image46/0001.jpg";
+            // 创建对象
+            var imgbig = new Image()
+            // 改变图片的src
+            imgbig.src = img_url
+            // 判断是否有缓存
+            if (imgbig.complete) {
+                // 打印
+                imgWidth = imgbig.width;
+                imgHeight = imgbig.height;
+                // alert('from:complete : width:' + imgbig.width + ',height:' + imgbig.height)
+            } else {
+                // 加载完成执行
+                imgbig.onload = function () {
+                    // 打印
+                    imgWidth = imgbig.width;
+                    imgHeight = imgbig.height;
+                    // alert('width:' + imgbig.width + ',height:' + imgbig.height)
+                }
+            }
+
             small.onmousemove = function (event) {
                 var event = event || window.event;
-                mask.style.left = event.clientX - mask.offsetWidth / 2 + "px";
-                mask.style.top = event.clientY - mask.offsetHeight / 2 + "px";
+                var clientX = event.clientX - small.offsetParent.offsetLeft;
+                var clientY = event.clientY - small.offsetParent.offsetTop;
 
-                img.style.left = -event.clientX / small.offsetWidth * img.offsetWidth + "px";
-                img.style.top = -event.clientY/small.offsetHeight * img.offsetHeight + "px";
+                if (clientX > mask.offsetWidth / 2 && clientX < this.offsetWidth - mask.offsetWidth / 2) {
+                    mask.style.left = clientX - mask.offsetWidth / 2 + "px";
+                }
+                if (clientY > mask.offsetHeight / 2 && clientY < this.offsetHeight - mask.offsetHeight / 2) {// 不超边界
+                    mask.style.top = clientY - mask.offsetHeight / 2 + "px";
+                }
+
+                //将鼠标所指位置显示在中间:800是图片大小
+                //计算当前鼠标位置在小图的比例
+                var a = clientX / this.offsetWidth;
+                //计算大图对应的位置,800是图片大小
+                var b = a * imgWidth;
+                //计算大图偏移位置
+                var c = this.offsetWidth / 2 - b;
+                var ha = clientY / this.offsetHeight;
+                var hb = ha * imgHeight;
+                var hc = this.offsetHeight / 2 - hb;
+
+                //防止超出边界
+                if (c > 0) {
+                    c = 0;
+                }
+                if (c < big.offsetWidth - imgWidth) {
+                    c = big.offsetWidth - imgWidth;
+                }
+
+                if (hc > 0) {
+                    hc = 0;
+                }
+                if (hc < big.offsetHeight - imgHeight) {
+                    hc = big.offsetHeight - imgHeight;
+                }
+                img.style.left = c + "px";
+                img.style.top = hc + "px";
             }
         }
     </script>
