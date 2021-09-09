@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .scroll {
+            width: 400px;
+            height: 10px;
+            background-color: pink;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .bar {
+            width: 10px;
+            height: 20px;
+            background-color: slateblue;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .mask {
+            width: 0;
+            height: 10px;
+            background-color: slateblue;
+        }
+
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var scroll = document.getElementById("scroll");
+            var bar = document.getElementById("bar");
+            var mask = scroll.children[1];
+            var progress = document.getElementById("progress");
+            bar.onmousedown = function () {
+                // var x = event.clientX - bar.offsetParent.offsetLeft;
+                // console.log("x:"+x);
+                document.onmousemove = function (event) {
+                    var x = event.clientX - scroll.offsetLeft;
+                    console.log("移动距离：" + x);
+                    if (x < 0) {
+                        x = 0;
+                    }
+                    if (x > scroll.offsetWidth - bar.offsetWidth) {
+                        x = scroll.offsetWidth - bar.offsetWidth;
+                    }
+                    bar.style.left = x + "px";
+                    mask.style.width = x + "px";
+                    progress.value = "进度：" + parseInt((x) * 100 / (scroll.offsetWidth - bar.offsetWidth))+"%";
+                    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                }
+            }
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="scroll" id="scroll">
+    <div class="bar" id="bar"></div>
+    <div class="mask"></div>
+</div>
+<input type="text" id="progress">
+</body>
+</html>
