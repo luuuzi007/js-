@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .box {
+            width: 300px;
+            height: 500px;
+            border: 1px solid red;
+            margin: 100px;
+            padding-right: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            width: 300px;
+            height: auto;
+            position: absolute;
+            /*background-color: pink;*/
+        }
+
+        .scroll {
+            width: 25px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #ccc;
+        }
+
+        .bar {
+            width: 25px;
+            height: 35px;
+            background-color: red;
+            border-radius: 5px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box = document.getElementById("box");
+            var scroll = document.getElementById("scroll");
+            var content = box.children[0];
+            var bar = scroll.children[0];
+            var barHeight = box.offsetHeight / content.offsetHeight * scroll.offsetHeight;
+            bar.style.height = barHeight + "px";
+            startScroll(bar);
+
+            function startScroll(obj) {
+                obj.onmousedown = function (event) {
+                    var event = event || window.event;
+                    //1、记录按下的位置(bar顶部到scroll顶部的距离)
+                    var top = event.clientY - this.offsetTop;
+                    var that = this;
+                    console.log("Parent.offsetHeight" + obj.offsetParent.offsetHeight);
+                    document.onmousemove = function (event) {
+                        var event = event || window.event;
+                        //2、计算移动后的距离,鼠标到屏幕body顶部的距离减去
+                        var styleTop = event.clientY - top;
+                        if (styleTop < 0) {
+                            styleTop = 0;
+                        } else if (styleTop > obj.offsetParent.offsetHeight - obj.offsetHeight) {
+                            styleTop = obj.offsetParent.offsetHeight - obj.offsetHeight
+                        }else{
+                            //3、内容移动距离
+                            //(内容的高度-大盒子的高度)/(滑块父盒子的高度-滑块的高度) 得到内容需要移动的距离和滑块需要移动的距离的比例
+                            // 比例*滑块移动的距离=内容需要移动的距离
+                            content.style.top=-(content.offsetHeight - box.offsetHeight) / (scroll.offsetHeight - bar.offsetHeight) * styleTop+"px";
+                        }
+
+                        that.style.top = styleTop + "px";
+                        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                    }
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="content">
+        1文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        2文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        3文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        4文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        5文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        6文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        7文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        8文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        9文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        10文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        11文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        1文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        2文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        3文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        4文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        5文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        6文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        7文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        8文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        9文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        10文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+        11文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈文字内容部分好的哈哈
+    </div>
+    <div class="scroll" id="scroll">
+        <div class="bar"></div>
+    </div>
+</div>
+</body>
+</html>
