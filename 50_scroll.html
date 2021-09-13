@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            height: 30000px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+
+    function scroll() {
+        if (window.pageYOffset != null)  //  ie9+ 和其他浏览器
+        {
+            return {
+                left: window.pageXOffset,
+                top: window.pageYOffset
+            }
+        } else if (document.compatMode == "CSS1Compat")  // 声明的了 DTD(<!DOCTYPE html>)
+            // 检测是不是怪异模式的浏览器 -- 就是没有 声明<!DOCTYPE html>
+        {
+            return {
+                left: document.documentElement.scrollLeft,
+                top: document.documentElement.scrollTop
+            }
+        }
+        return { //  剩下的肯定是怪异模式的
+            left: document.body.scrollLeft,
+            top: document.body.scrollTop
+        }
+    }
+
+    window.onscroll = function () {
+        document.title = scroll().top
+    }
+
+</script>
+</body>
+</html>

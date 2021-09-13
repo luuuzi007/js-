@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            height: 3000px;
+        }
+
+        .box {
+            height: 100px;
+            background-color: pink;
+
+        }
+
+        .nav {
+            height: 30px;
+            background-color: slateblue;
+        }
+
+        .fiexd {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+    <script src="js/js51.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var nav = document.getElementById("nav");
+            var top = nav.offsetTop;
+            // console.log("tap:" + top);
+            window.onscroll = function () {
+                console.log("scroll().top:" + scroll().top);
+                if (scroll().top >= top) {
+                    // alert("11")
+                    nav.className = "nav fiexd"
+                } else {
+                    nav.className = "nav"
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div class="box">
+</div>
+<div class="nav" id="nav">导航栏</div>
+</body>
+</html>
