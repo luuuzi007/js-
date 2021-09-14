@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        ol {
+            height: 100%;
+        }
+
+        li {
+            list-style: none;
+            height: 100%;
+            /*background-color: green;*/
+        }
+
+        ul {
+            position: fixed;
+            left: 100px;
+            top: 0px;
+        }
+
+        ul > li {
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var colors = ["pink", "purple", "orange", "blue", "green"];
+            var ol = document.getElementById("ol");
+            var ul = document.getElementById("ul");
+            var lis = ol.getElementsByTagName("li");
+            var lis2 = ul.getElementsByTagName("li");
+            var leader = 0, target = 0, time = null
+            for (var i = 0, length = lis.length; i < length; i++) {
+                lis[i].style.backgroundColor = colors[i];
+                lis2[i].style.backgroundColor = colors[i];
+                lis2[i].index = i;
+                lis2[i].onclick = function () {
+                    //方法内部直接：lis2[i]会报错：undefined
+                    // console.log("window.scrollHeight:" + (lis[i].offsetTop));
+                    target = lis[this.index].offsetTop
+                    time = setInterval(function () {
+                        leader = leader + (target - leader) / 10;
+                        window.scrollTo(0, leader);
+                        if (leader == target) {
+                            clearInterval(time);
+                        }
+                    }, 20)
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ol id="ol">
+    <li>首页</li>
+    <li>关注</li>
+    <li>动态</li>
+    <li>风格</li>
+    <li>作品</li>
+</ol>
+<ul id="ul">
+    <li>首页</li>
+    <li>关注</li>
+    <li>动态</li>
+    <li>风格</li>
+    <li>作品</li>
+</ul>
+</body>
+</html>
