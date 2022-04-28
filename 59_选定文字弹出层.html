@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>选定文字弹出层</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #test {
+            width: 300px;
+        }
+
+        #diag {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            /*left: 100px;*/
+            /*top: 100px;*/
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var test = document.getElementById("test");
+            var diag = document.getElementById("diag");
+
+            test.onmouseup = function (event) {
+                var event = event || window.event;
+                var x = event.clientX;
+                var y = event.clientY;
+                var txt = window.getSelection().toString();
+                if (txt) {
+                    show(x, y, txt);
+                }
+            }
+            document.onclick = function (event) {
+                var event = event || window.event;
+                console.log("document.点击");
+                var tarId = event.target ? event.target.id : event.srcElement.id;
+                if (tarId != "diag" && tarId != "test") {
+                    diag.style.display = "none";
+                }
+            }
+
+            function show(moveX, moveY, contentTxt) {
+                setTimeout(function () {
+                    diag.style.display = "block";
+                    diag.style.left = moveX + "px";
+                    diag.style.top = moveY + "px";
+                    diag.innerHTML = contentTxt;
+                }, 100);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="diag"></div>
+<div id="test">
+    注意看信息中的提示内容：Received status code 400 from server: Bad Request 从这里可以知道，应该是网络的问题，
+    没有办法从网上获取 .pom 文件。 原因已经找到了，就是：网络有问题。 但是网络到底哪里出了问题，还需要进一步的调查：
+    注意看信息中的提示内容：Received status code 400 from server: Bad Request 从这里可以知道，应该是网络的问题，
+    没有办法从网上获取 .pom 文件。 原因已经找到了，就是：网络有问题。 但是网络到底哪里出了问题，还需要进一步的调查：
+    注意看信息中的提示内容：Received status code 400 from server: Bad Request 从这里可以知道，应该是网络的问题，
+    没有办法从网上获取 .pom 文件。 原因已经找到了，就是：网络有问题。 但是网络到底哪里出了问题，还需要进一步的调查：
+    注意看信息中的提示内容：Received status code 400 from server: Bad Request 从这里可以知道，应该是网络的问题，
+    没有办法从网上获取 .pom 文件。 原因已经找到了，就是：网络有问题。 但是网络到底哪里出了问题，还需要进一步的调查：
+</div>
+</body>
+</html>

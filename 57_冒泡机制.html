@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>冒泡机制</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var btn = document.getElementById("btn");
+            btn.onclick = function (event) {
+                alert("点击button");
+                if (event && event.stopPropagation) {
+                    event.stopPropagation();  //  w3c 标准
+                } else {
+                    event.cancelBubble = true;  // ie 678  ie浏览器
+                }
+            }
+        }
+        document.onclick = function () {
+            alert("点击document");
+        }
+    </script>
+</head>
+<body>
+<button id="btn">点击事件</button>
+</body>
+</html>
