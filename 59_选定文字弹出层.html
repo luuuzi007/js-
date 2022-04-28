@@ -33,7 +33,12 @@
                 var event = event || window.event;
                 var x = event.clientX;
                 var y = event.clientY;
-                var txt = window.getSelection().toString();
+                var txt;
+                if (window.getSelection) {
+                    txt = window.getSelection().toString();
+                } else {
+                    txt = window.selection.createRange().txt;//适配ie
+                }
                 if (txt) {
                     show(x, y, txt);
                 }
