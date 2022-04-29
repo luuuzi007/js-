@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>动画封装</title>
+    <style type="text/css">
+        #run {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var btn200 = document.getElementById("btn200");
+            var btn400 = document.getElementById("btn400");
+            var run = document.getElementById("run");
+            btn200.onclick = function () {
+                runf(run, 200);
+            }
+            btn400.onclick = function () {
+                runf(run, 400);
+            }
+
+            function runf(obj, target) {
+                obj.time = setInterval(function () {
+                    if (obj.offsetLeft > target) {
+                        clearInterval(obj.time);
+                    }
+                    obj.style.left = obj.offsetLeft + 10 + "px";
+                }, 100);
+            }
+        }
+    </script>
+</head>
+<body>
+<button id="btn200">开始200</button>
+<button id="btn400">开始400</button>
+<div id="run"></div>
+</body>
+</html>

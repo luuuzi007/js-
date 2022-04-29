@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>动画原理</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var btn = document.getElementsByTagName("button")[0];
+            var div = document.getElementsByTagName("div")[0];
+            var time = null
+            btn.onclick = function () {
+                if (null == time) {
+                    time = setInterval(function () {
+                        var num = div.offsetLeft + 10;
+                        if (num > 400) {
+                            clearInterval(time);
+                        }
+                        console.log("num:" + num);
+                        div.style.left = num + "px";
+                    }, 100);
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<button>开始</button>
+<div name></div>
+</body>
+</html>
